@@ -1,0 +1,29 @@
+{{- if .Values.monitor.metrics }}
+apiVersion: v1
+items:
+- apiVersion: monitoring.coreos.com/v1
+  kind: ServiceMonitor
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"monitoring.coreos.com/v1","kind":"ServiceMonitor","metadata":{"annotations":{},"labels":{"app":"kube-prometheus-stack-todo","app.kubernetes.io/instance":"metrics","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/part-of":"kube-prometheus-stack","app.kubernetes.io/version":"45.7.1","chart":"kube-prometheus-stack-45.7.1","heritage":"Helm","release":"metrics"},"name":"todo-servicemonitor","namespace":"todo"},"spec":{"endpoints":[{"interval":"5s","path":"/metrics","port":"http"}],"namespaceSelector":{"matchNames":["todo"]},"selector":{"matchLabels":{"app":"kube-prometheus-stack-todo","release":"metrics"}}}}
+    creationTimestamp: "2023-03-19T15:32:23Z"
+    generation: 3
+    labels:
+      release: metrics
+    name: todo-servicemonitor
+    resourceVersion: "134449"
+    uid: 9936f169-09d4-4181-993d-fc3bc669d36b
+  spec:
+    endpoints:
+    - interval: 5s
+      path: /metrics
+      port: http
+    selector:
+      matchLabels:
+        metrics: metrics
+kind: List
+metadata:
+  resourceVersion: ""
+{{- end }}
+

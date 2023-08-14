@@ -1,0 +1,19 @@
+{{- if eq .Values.service.type "ClusterIP" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo
+  #namespace: todo
+  labels:
+    metrics: metrics
+spec:
+  selector:
+    type: app
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 5000
+#  externalIPs:
+#    - 198.51.100.32
+{{- end }}

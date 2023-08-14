@@ -1,0 +1,24 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    ingress: ingress  
+  name: todo
+  #namespace: todo
+  resourceVersion: "10571"
+  uid: 3e40e670-9d63-4ba1-9e91-04690298d9e9
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: todo123.duckdns.org
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: todo
+            port:
+              number: 80
+{{- end }}
